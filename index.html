@@ -30,8 +30,8 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #6b7280;
         }
-        /* New CSS for the dropdown to stay visible on hover */
-        .dropdown-container:hover .dropdown-content {
+        /* New CSS to handle click-based dropdown visibility */
+        .dropdown-content.visible {
             display: block;
         }
     </style>
@@ -147,12 +147,12 @@
             <div class="flex flex-col items-center justify-center space-y-4 md:space-y-0 md:flex-row md:space-x-4">
                 <!-- Dropdown Email Button -->
                 <div class="relative inline-block dropdown-container">
-                    <button class="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300 flex items-center space-x-2">
+                    <button id="email-button" class="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300 flex items-center space-x-2">
                         <span>Email Me</span>
                         <!-- Small down arrow SVG icon -->
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div class="dropdown-content absolute hidden w-72 mt-2 py-2 bg-gray-700 rounded-lg shadow-xl z-10 text-center -left-20 md:-left-12">
+                    <div id="email-dropdown" class="dropdown-content absolute hidden w-72 mt-2 py-2 bg-gray-700 rounded-lg shadow-xl z-10 text-center -left-20 md:-left-12">
                         <p class="px-4 py-2 text-gray-200" id="email-address">masoud.tourani@emu.edu.tr</p>
                         <button onclick="copyToClipboard()" class="mt-1 w-full bg-gray-600 hover:bg-gray-500 text-white text-sm font-bold py-2 px-4 rounded-b-lg transition duration-300">
                             Copy Email Address
@@ -178,6 +178,23 @@
     </footer>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const emailButton = document.getElementById('email-button');
+            const emailDropdown = document.getElementById('email-dropdown');
+
+            emailButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevents the click from propagating to the document listener
+                emailDropdown.classList.toggle('visible');
+            });
+
+            document.addEventListener('click', (event) => {
+                // If the click is outside the dropdown, hide it
+                if (!emailButton.contains(event.target) && !emailDropdown.contains(event.target)) {
+                    emailDropdown.classList.remove('visible');
+                }
+            });
+        });
+
         function copyToClipboard() {
             const emailAddress = document.getElementById("email-address").innerText;
             const tempInput = document.createElement("input");
@@ -186,7 +203,15 @@
             tempInput.select();
             document.execCommand('copy');
             document.body.removeChild(tempInput);
-            alert("Email address copied to clipboard!");
+            
+            // Provide visual feedback to the user
+            const copyButton = document.querySelector("#email-dropdown button");
+            copyButton.innerText = "Copied!";
+            copyButton.style.backgroundColor = '#4CAF50'; // Green color for feedback
+            setTimeout(() => {
+                copyButton.innerText = "Copy Email Address";
+                copyButton.style.backgroundColor = ''; // Reset background color
+            }, 2000);
         }
     </script>
 </body>
