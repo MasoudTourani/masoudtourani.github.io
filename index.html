@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
+    <!-- Favicon: A simple GitHub icon for the address bar -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512'%3E%3Cpath fill='%23ffffff' d='M165.9 397.4c0 10.3-16.7 10.3-27 0-10.4-10.4-10.4-27 0-37.4 10.3-10.3 27-10.3 37.3 0 10.4 10.4 10.4 27 0 37.4zM165.9 337.4c0 10.3-16.7 10.3-27 0-10.4-10.4-10.4-27 0-37.4 10.3-10.3 27-10.3 37.3 0 10.4 10.4 10.4 27 0 37.4zM165.9 277.4c0 10.3-16.7 10.3-27 0-10.4-10.4-10.4-27 0-37.4 10.3-10.3 27-10.3 37.3 0 10.4 10.4 10.4 27 0 37.4zM165.9 217.4c0 10.3-16.7 10.3-27 0-10.4-10.4-10.4-27 0-37.4 10.3-10.3 27-10.3 37.3 0 10.4 10.4 10.4 27 0 37.4zM165.9 157.4c0 10.3-16.7 10.3-27 0-10.4-10.4-10.4-27 0-37.4 10.3-10.3 27-10.3 37.3 0 10.4 10.4 10.4 27 0 37.4zM165.9 97.4c0 10.3-16.7 10.3-27 0-10.4-10.4-10.4-27 0-37.4 10.3-10.3 27-10.3 37.3 0 10.4 10.4 10.4 27 0 37.4zM165.9 37.4c0 10.3-16.7 10.3-27 0-10.4-10.4-10.4-27 0-37.4 10.3-10.3 27-10.3 37.3 0 10.4 10.4 10.4 27 0 37.4zM165.9-22.6c0 10.3-16.7 10.3-27 0-10.4-10.4-10.4-27 0-37.4 10.3-10.3 27-10.3 37.3 0 10.4 10.4 10.4 27 0 37.4zM165.9-82.6c0 10.3-16.7 10.3-27 0-10.4-10.4-10.4-27 0-37.4 10.3-10.3 27-10.3 37.3 0 10.4 10.4 10.4 27 0 37.4zM165.9-142.6c0 10.3-16.7 10.3-27 0-10.4-10.4-10.4-27 0-37.4 10.3-10.3 27-10.3 37.3 0 10.4 10.4 10.4 27 0 37.4zM165.9-202.6c0 10.3-16.7 10.3-27 0-10.4-10.4-10.4-27 0-37.4 10.3-10.3 27-10.3 37.3 0 10.4 10.4 10.4 27 0 37.4z'/%3E%3C/svg%3E">
     <!-- Use Tailwind CSS for modern, responsive styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -31,22 +35,25 @@
             background: #6b7280;
         }
 
-        /* Styles for the waving hand animation */
-        @keyframes wave-animation {
-            0% { transform: rotate(0.0deg) }
-            10% { transform: rotate(14.0deg) }
-            20% { transform: rotate(-8.0deg) }
-            30% { transform: rotate(14.0deg) }
-            40% { transform: rotate(-4.0deg) }
-            50% { transform: rotate(10.0deg) }
-            60% { transform: rotate(0.0deg) }
-            100% { transform: rotate(0.0deg) }
+        /* New CSS for the typing effect */
+        .typing-effect::after {
+            content: '|';
+            animation: blink-caret 1s infinite;
+        }
+        @keyframes blink-caret {
+            from, to { opacity: 0; }
+            50% { opacity: 1; }
         }
 
-        .wave {
-            animation: wave-animation 2.5s infinite;
-            transform-origin: 70% 70%;
-            display: inline-block;
+        /* New CSS for the shaking hand animation */
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            10%, 30%, 50%, 70%, 90% { transform: rotate(15deg); }
+            20%, 40%, 60%, 80% { transform: rotate(-15deg); }
+        }
+        .animate-shake {
+            animation: shake 0.5s ease-in-out;
+            animation-iteration-count: 3; /* Shakes a few times then stops */
         }
         
         /* New CSS to handle click-based dropdown visibility */
@@ -61,12 +68,22 @@
     <header class="bg-gray-900 p-6 shadow-lg sticky top-0 z-50">
         <nav class="container mx-auto flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-teal-400">
-                Masoud Tourani <span class="wave">👋</span>
+                <span id="name-typing" class="mr-2"></span>
+                <span id="hand-icon">👋</span>
             </a>
-            <div>
-                <a href="#portfolio" class="text-gray-300 hover:text-white px-4 py-2 transition duration-300">Portfolio</a>
-                <a href="#about" class="text-gray-300 hover:text-white px-4 py-2 transition duration-300">About</a>
-                <a href="#contact" class="text-gray-300 hover:text-white px-4 py-2 transition duration-300">Contact</a>
+            <div class="flex items-center space-x-4">
+                <a href="#portfolio" class="text-gray-300 hover:text-white px-2 py-2 transition duration-300 flex items-center space-x-1">
+                    <i class="fas fa-layer-group text-white text-lg"></i>
+                    <span>Portfolio</span>
+                </a>
+                <a href="#about" class="text-gray-300 hover:text-white px-2 py-2 transition duration-300 flex items-center space-x-1">
+                    <i class="fas fa-address-card text-white text-lg"></i>
+                    <span>About</span>
+                </a>
+                <a href="#contact" class="text-gray-300 hover:text-white px-2 py-2 transition duration-300 flex items-center space-x-1">
+                    <i class="fas fa-envelope text-white text-lg"></i>
+                    <span>Contact</span>
+                </a>
             </div>
         </nav>
     </header>
@@ -87,7 +104,10 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="py-20 bg-gray-800 animate-on-scroll">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 text-white">My Projects</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 text-white flex items-center justify-center space-x-4">
+                <i class="fas fa-layer-group text-white text-5xl"></i>
+                <span>My Projects</span>
+            </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
@@ -153,7 +173,10 @@
     <!-- About Section -->
     <section id="about" class="py-20 bg-gray-900 animate-on-scroll">
         <div class="container mx-auto px-6 max-w-4xl text-center">
-            <h2 class="text-4xl font-bold mb-6 text-white">About Me</h2>
+            <h2 class="text-4xl font-bold mb-6 text-white flex items-center justify-center space-x-4">
+                <i class="fas fa-address-card text-white text-4xl"></i>
+                <span>About Me</span>
+            </h2>
             <p class="text-gray-400 text-lg leading-relaxed">
                 As an Industrial Designer and Engineer, I have a passion for merging theoretical knowledge with practical application. My experience with software like CATIA and lecturing SolidWorks, combined with hands-on work in POS terminals and mobile phones circuit-board repair, gives me a unique perspective on industrial production and design. This portfolio is a collection of projects that reflect my expertise and commitment to industrial excellence.
             </p>
@@ -163,15 +186,17 @@
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-gray-800 animate-on-scroll">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-6 text-white">Get in Touch</h2>
+            <h2 class="text-4xl font-bold mb-6 text-white flex items-center justify-center space-x-4">
+                <i class="fas fa-handshake text-white text-4xl"></i>
+                <span>Get in Touch</span>
+            </h2>
             <p class="text-gray-400 text-lg mb-8">Feel free to connect with me to discuss projects or opportunities.</p>
             <div class="flex flex-col items-center justify-center space-y-4 md:space-y-0 md:flex-row md:space-x-4">
                 <!-- Dropdown Email Button -->
                 <div class="relative inline-block dropdown-container">
                     <button id="email-button" class="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300 flex items-center space-x-2">
+                        <i class="fas fa-envelope text-white"></i>
                         <span>Email Me</span>
-                        <!-- Small down arrow SVG icon -->
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div id="email-dropdown" class="dropdown-content absolute hidden w-72 mt-2 py-2 bg-gray-700 rounded-lg shadow-xl z-10 text-center -left-20 md:-left-12">
                         <p class="px-4 py-2 text-gray-200" id="email-address">masoud.tourani@emu.edu.tr</p>
@@ -180,14 +205,17 @@
                         </button>
                     </div>
                 </div>
-                <a href="Resume.pdf" target="_blank" class="bg-rose-500 hover:bg-rose-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300">
-                    Resume
+                <a href="Resume.pdf" target="_blank" class="bg-rose-500 hover:bg-rose-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300 flex items-center space-x-2">
+                    <i class="fas fa-file-alt text-white"></i>
+                    <span>Resume</span>
                 </a>
-                <a href="https://www.linkedin.com/in/masoudtourani/" target="_blank" class="bg-blue-700 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300">
-                    LinkedIn
+                <a href="https://www.linkedin.com/in/masoudtourani/" target="_blank" class="bg-blue-700 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300 flex items-center space-x-2">
+                    <i class="fab fa-linkedin text-white"></i>
+                    <span>LinkedIn</span>
                 </a>
-                <a href="https://github.com/MasoudTourani" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300">
-                    GitHub
+                <a href="https://github.com/MasoudTourani" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300 flex items-center space-x-2">
+                    <i class="fab fa-github text-white"></i>
+                    <span>GitHub</span>
                 </a>
             </div>
         </div>
@@ -202,7 +230,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             const emailButton = document.getElementById('email-button');
             const emailDropdown = document.getElementById('email-dropdown');
-            const wavingHand = document.querySelector('.wave');
             
             emailButton.addEventListener('click', (event) => {
                 event.stopPropagation(); // Prevents the click from propagating to the document listener
@@ -215,9 +242,6 @@
                     emailDropdown.classList.remove('visible');
                 }
             });
-
-            // Start the waving hand animation when the page loads
-            wavingHand.style.animationPlayState = 'running';
 
             // Intersection Observer for scroll animations
             const sections = document.querySelectorAll('.animate-on-scroll');
@@ -243,6 +267,24 @@
                 section.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
                 observer.observe(section);
             });
+            
+            // New JavaScript for typing effect and shaking hand
+            const nameTypingElement = document.getElementById('name-typing');
+            const handIcon = document.getElementById('hand-icon');
+            const nameToType = "Masoud Tourani";
+            let charIndex = 0;
+
+            function typeWriter() {
+                if (charIndex < nameToType.length) {
+                    nameTypingElement.textContent += nameToType.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 100); // Adjust typing speed here
+                } else {
+                    handIcon.classList.add('animate-shake');
+                }
+            }
+
+            typeWriter();
         });
 
         function copyToClipboard() {
