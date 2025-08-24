@@ -141,12 +141,19 @@
             <h2 class="text-4xl font-bold mb-6 text-white">Get in Touch</h2>
             <p class="text-gray-400 text-lg mb-8">Feel free to connect with me to discuss projects or opportunities.</p>
             <div class="flex flex-col items-center justify-center space-y-4 md:space-y-0 md:flex-row md:space-x-4">
-                <a href="mailto:masoud.tourani@emu.edu.tr" class="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300">
-                    Email Me
-                </a>
-                <a href="Resume.pdf" target="_blank" class="bg-rose-500 hover:bg-rose-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300">
+                <!-- Dropdown Email Button -->
+                <div class="relative inline-block group">
+                    <button class="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300 flex items-center space-x-2">
+                        <span>Email Me</span>
+                        <!-- Small down arrow SVG icon -->
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="absolute hidden group-hover:block w-72 mt-2 py-2 bg-gray-700 rounded-lg shadow-xl z-10 text-center -left-20 md:-left-12">
+                        <p class="px-4 py-2 text-gray-200">masoud.tourani@emu.edu.tr</p>
+                    </div>
+                </div>
+                <a href="resume.pdf" target="_blank" class="bg-rose-500 hover:bg-rose-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300">
                     Resume
-                </a>
                 </a>
                 <a href="https://www.linkedin.com/in/masoudtourani/" target="_blank" class="bg-blue-700 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300">
                     LinkedIn
