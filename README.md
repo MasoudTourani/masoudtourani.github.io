@@ -1,0 +1,1 @@
+Industrial designer and @https://ie.emu.edu.tr/en research assistant graduate with diverse experience in manufacturing and lecturing. Proficient in SolidWorks, CATIA, and Google SketchUp for 3D modeling and design. Skilled in hands-on technical roles, including mobile phones and POS devices repair and configuration.
