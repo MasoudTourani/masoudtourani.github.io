@@ -23,20 +23,24 @@
             background-position: center;
         }
         /* Custom scrollbar styling for better aesthetics */
-        ::-webkit-scrollbar {
-            width: 10px;
+        /* For WebKit (Chrome, Safari, etc.) */
+        .scrolling-wrapper::-webkit-scrollbar {
+            height: 8px;
         }
-        ::-webkit-scrollbar-track {
+        .scrolling-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .scrolling-wrapper::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            border-radius: 4px;
+        }
+        .scrolling-wrapper:hover::-webkit-scrollbar-thumb {
+            background-color: #4b5563;
+        }
+        .scrolling-wrapper:hover::-webkit-scrollbar-track {
             background: #1f2937;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #4b5563;
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6b7280;
-        }
-
+        
         /* New CSS for the typing effect */
         .typing-effect::after {
             content: '|';
@@ -102,7 +106,8 @@
             <a href="#" class="text-2xl font-bold text-teal-400 flex items-center">
                 <!-- Profile picture with fade-in animation, size increased to w-24 h-24 on large screens -->
                 <div id="profile-picture" class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden mr-3 opacity-0">
-                    <img src="https://i.imgur.com/jA5Rfm2.jpeg" alt="Profile Picture" class="object-cover w-full h-full">
+                    <!-- Replace the placeholder URL below with your actual direct image link -->
+                    <img src="https://placehold.co/100x100/black/white?text=MT" alt="Profile Picture" class="object-cover w-full h-full">
                 </div>
                 <span id="name-typing" class="mr-2"></span>
                 <span id="hand-icon">👋</span>
@@ -145,10 +150,11 @@
                 <span>My Projects</span>
             </h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Horizontal Scrolling Container -->
+            <div class="scrolling-wrapper flex flex-nowrap space-x-6 overflow-x-auto pb-4">
                 
                 <!-- Portfolio Item 1: CAD Design -->
-                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-700">
+                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-700 w-96 flex-shrink-0">
                     <div class="relative w-full aspect-video">
                         <!-- Embed a YouTube or Vimeo video here. Replace the 'src' with your video's embed URL. -->
                         <iframe 
@@ -167,7 +173,7 @@
                 </div>
 
                 <!-- Portfolio Item 2: CNC Project -->
-                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-700">
+                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-700 w-96 flex-shrink-0">
                     <div class="relative w-full aspect-video">
                         <iframe 
                             src="https://www.youtube.com/embed/2_Xz-dF8FjU?si=1fD7vS8A-S1oG_2G" 
@@ -185,7 +191,7 @@
                 </div>
 
                 <!-- Portfolio Item 3: Layout Design -->
-                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-700">
+                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-700 w-96 flex-shrink-0">
                     <div class="relative w-full aspect-video">
                         <iframe 
                             src="https://www.youtube.com/embed/5yLzZikS15k?si=1lJc9xK5TqP6t7Yq" 
@@ -199,6 +205,42 @@
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-teal-400">Factory Layout Optimization</h3>
                         <p class="text-gray-400">A presentation on a factory layout design using Google SketchUp and data from Excel.</p>
+                    </div>
+                </div>
+
+                 <!-- Portfolio Item 4 (Example for scrolling) -->
+                 <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-700 w-96 flex-shrink-0">
+                    <div class="relative w-full aspect-video">
+                        <iframe 
+                            src="https://www.youtube.com/embed/1aJgL1_iJ6Q?si=4P5p1Z5F8M7F9D8B" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen 
+                            class="absolute top-0 left-0 w-full h-full">
+                        </iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-teal-400">New Project Title</h3>
+                        <p class="text-gray-400">Description of a new project to showcase horizontal scrolling.</p>
+                    </div>
+                </div>
+                
+                 <!-- Portfolio Item 5 (Example for scrolling) -->
+                 <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-700 w-96 flex-shrink-0">
+                    <div class="relative w-full aspect-video">
+                        <iframe 
+                            src="https://www.youtube.com/embed/1aJgL1_iJ6Q?si=4P5p1Z5F8M7F9D8B" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen 
+                            class="absolute top-0 left-0 w-full h-full">
+                        </iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-teal-400">Another Project</h3>
+                        <p class="text-gray-400">Another example to fill the scrollable container.</p>
                     </div>
                 </div>
                 
